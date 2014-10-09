@@ -11,6 +11,7 @@
     <string name="porthint">8080</string>
     <string name="host">HOST</string>
     <string name="hosthint">127.0.0.1</string>
+    
     <string name="username">USERNAME(Optional)</string>
     <string name="password">PASSWORD(Optional)</string>
 
