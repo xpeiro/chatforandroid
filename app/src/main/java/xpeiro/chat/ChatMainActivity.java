@@ -213,6 +213,7 @@ public class ChatMainActivity extends Activity {
     public void send(View view) {
 
         client.send(input.getText().toString());
+        input.setText("");
     }
 
     @Override
