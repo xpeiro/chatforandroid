@@ -1,0 +1,168 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/server"
+        android:layout_gravity="left|bottom"
+        android:onClick="server"
+        android:text="@string/serverbutton"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:text="@string/clientbutton"
+        android:id="@+id/client"
+        android:onClick="client"
+        android:layout_gravity="right|bottom"
+        android:layout_toEndOf="@+id/server"
+        android:layout_below="@+id/server"
+        android:layout_alignStart="@+id/server"
+        android:layout_alignEnd="@+id/send" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:id="@+id/editText"
+        android:layout_gravity="left|center_vertical"
+        android:hint="@string/hint"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="74dp"
+        android:text="@string/sendbutton"
+        android:id="@+id/send"
+        android:onClick="send"
+        android:layout_gravity="right|center_vertical"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/editText5"
+        android:layout_alignTop="@+id/editText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="231dp"
+        android:id="@+id/textView"
+        android:layout_gravity="left|top"
+        android:background="#BABABA"
+        android:textIsSelectable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="2"
+        android:id="@+id/editText3"
+        android:layout_toEndOf="@+id/server"
+        android:editable="true"
+        android:textAlignment="gravity"
+        android:hint="@string/porthint"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/server" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/portno"
+        android:id="@+id/textView2"
+        android:layout_toEndOf="@+id/client"
+        android:layout_toStartOf="@+id/server"
+        android:textAlignment="textStart"
+        android:layout_alignTop="@+id/server"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|phone"
+        android:ems="2"
+        android:id="@+id/editText2"
+        android:layout_toEndOf="@+id/server"
+        android:editable="true"
+        android:textAlignment="gravity"
+        android:hint="@string/hosthint"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_toStartOf="@+id/server"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/host"
+        android:id="@+id/textView3"
+        android:layout_toEndOf="@+id/client"
+        android:layout_toStartOf="@+id/server"
+        android:textAlignment="textStart"
+        android:layout_below="@+id/editText3"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="2"
+        android:id="@+id/editText4"
+        android:layout_toEndOf="@+id/server"
+        android:editable="true"
+        android:textAlignment="gravity"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_toStartOf="@+id/server"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:id="@+id/textView4"
+        android:layout_toEndOf="@+id/client"
+        android:layout_toStartOf="@+id/server"
+        android:textAlignment="textStart"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:id="@+id/textView5"
+        android:layout_toEndOf="@+id/client"
+        android:layout_toStartOf="@+id/server"
+        android:textAlignment="textStart"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:id="@+id/editText5"
+        android:layout_toEndOf="@+id/server"
+        android:editable="true"
+        android:textAlignment="gravity"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_toStartOf="@+id/server"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:password="true"
+        android:inputType="textPassword" />
+
+
+</RelativeLayout>
