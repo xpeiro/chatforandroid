@@ -1,6 +1,10 @@
 package xpeiro.chat;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,13 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
 
-public class ChatMain extends Activity {
+public class ChatMainActivity extends Activity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -43,6 +48,10 @@ public class ChatMain extends Activity {
     Button serverbutton;
     Button sendbutton;
     Button clientbutton;
+    Notification.Builder mBuilder;
+    NotificationManager mNotifyMgr;
+    Intent intent;
+    PendingIntent clipboardintent;
     int port = 8080;
     String host = "localhost";
     MulticastSocket mcsocket;
@@ -66,11 +75,13 @@ public class ChatMain extends Activity {
         serverbutton = (Button) findViewById(R.id.server);
         clientbutton = (Button) findViewById(R.id.client);
         sendbutton = (Button) findViewById(R.id.send);
-
+        mNotifyMgr=
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
 
 
-    public void configurar() {
+
+    private void configurar() {
         try {
             mcsocket = new MulticastSocket(port);
             group = InetAddress.getByName("224.0.0.1");
@@ -95,6 +106,7 @@ public class ChatMain extends Activity {
 
         } catch (Exception e) {
             System.err.println("error recieving data");
+
 
         }
 
@@ -123,11 +135,33 @@ public class ChatMain extends Activity {
         public void handleMessage(Message msg) {
             output.append("\n" + msg.obj);
             output.scrollTo(0, output.getBottom());
+            notification(msg);
             super.handleMessage(msg);
         }
     };
 
     Thread visorthread = new Thread(visor);
+
+    private void notification(Message msg) {
+        String message = (String) msg.obj;
+
+        if (!message.isEmpty()) {
+            intent = new Intent(getBaseContext(),NotificationBroadcastRecv.class);
+            intent.putExtra("message", (CharSequence) message.substring(message.indexOf(' ')+1));
+            clipboardintent = PendingIntent.getBroadcast(getBaseContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder =
+                    new Notification.Builder(this)
+                            .addAction(R.drawable.clipboard_icon, "Copy to Clipboard", clipboardintent)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle("Message Recieved");
+            mBuilder.setContentText((CharSequence) message);
+            mNotifyMgr.notify(001, mBuilder.build());
+        }
+    }
+
+
+
+
 
 
     public void server(View view) {
@@ -169,6 +203,9 @@ public class ChatMain extends Activity {
             client.start();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            Toast.makeText(getApplicationContext(), "Error Connecting to Server",
+                    Toast.LENGTH_LONG).show();
+
         }
 
     }
@@ -177,9 +214,18 @@ public class ChatMain extends Activity {
 
         client.send(input.getText().toString());
     }
+
     @Override
     public void onBackPressed(){
 
+        moveTaskToBack(true);
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+
 
 }

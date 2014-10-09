@@ -32,7 +32,7 @@ public class Multiserver extends Thread {
 
         } catch (Exception e) {
             System.err.println("error accepting new connnection (port " + port + " unavailable?)");
-            System.exit(1);
+
         }
     }
 }
