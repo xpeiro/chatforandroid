@@ -177,5 +177,9 @@ public class ChatMain extends Activity {
 
         client.send(input.getText().toString());
     }
+    @Override
+    public void onBackPressed(){
+
+    }
 
 }
